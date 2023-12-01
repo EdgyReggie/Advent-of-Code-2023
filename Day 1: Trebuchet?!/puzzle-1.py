@@ -3,6 +3,7 @@ with open('input') as f:
     for line in f.readlines():
         newLines = []
         for chars in line: 
-            newLines.append(chars)
+            if chars.isdigit():
+                newLines.append(chars)
         lines.append(newLines)
         print(lines)
