@@ -1,6 +1,6 @@
 def main():
     games = []
-    possible_games = []
+    powers = []
 
     with open("input", "r") as f: 
         for line in f: 
@@ -11,29 +11,30 @@ def main():
                 hands = [subset.strip().split(",") for subset in game]
                 games.append(hands)
 
-    # This is just a fancy for loop that keeps track of the element and the index
-    for i, game in enumerate(games, start=1):
-       if possibile_game(game):
-           possible_games.append(i)
+    for game in games: 
+        game_powers(game, powers)
             
-    print(sum(possible_games))
+    print(sum(powers))
 
-def possibile_game(game):
-    max_red = 12
-    max_green = 13 
-    max_blue = 14
+def game_powers(game, powers):
+    min_red = 0
+    min_green = 0
+    min_blue = 0
 
     for subset in game:
         for colour in subset: 
             count = int(colour.split()[0])
             cube = colour.split()[1]
-            if cube == "red" and count > max_red:
-                return False
-            elif cube == "green" and count > max_green:
-                return False
-            elif cube == "blue" and count > max_blue:
-                return False
-    return True
+
+            if cube == "red" and count > min_red: 
+                min_red = count
+            elif cube == "green" and count > min_green:
+                min_green = count
+            elif cube == "blue" and count > min_blue: 
+                min_blue = count
+    powers.append(min_red * min_green * min_blue)
+
+
 
 if __name__ == "__main__":
     main()
