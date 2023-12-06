@@ -14,16 +14,23 @@ def main():
     schematic = [list(line.strip().ljust(max_length)) for line in lines]
 
     for row in schematic:
+        print(row)
         for char in row:
+            element = ""
             if char.isdigit():
                 queue.put(char)
-            elif char == '.':
-                print()
-            elif is_special_char(char):
-                print()
+            elif char == '.' and not queue.empty():
+                while not queue.empty():
+                    element += queue.get()
+                print(element + "\nperiod encountered")
+                # Call some function to get the border of around the number 
+            elif is_special_char(char) and not char == '.': # Move this if statement 
+                print("special char encountered")
+            elif char == '.' and queue.empty():
+                print("period encountered")
                 
 def is_special_char(char):
-    return char.isprintable() and not char.isalnum() and char is not string.whitespace
+    return char.isprintable() and not char.isalnum() and char not in string.whitespace
 
 if __name__ == "__main__":
     main()
