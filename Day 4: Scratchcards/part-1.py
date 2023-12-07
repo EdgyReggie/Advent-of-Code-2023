@@ -1,13 +1,23 @@
 def main():
     game_numbers = []
-    total_numbers = []
+    all_games = []
     with open("example-input", "r") as f:
         for line in f: 
             game = line.split(":")
-            game_numbers = [number.strip().split("|") for number in game[1:]]
-            total_numbers.append(game_numbers)
+            game_numbers = [int(number.strip().split("|")) for number in game[1:]]
+            all_games.append(game_numbers)
+    
+    results = []
 
-    print(total_numbers)
+    for game in all_games:
+        for game_values in game:
+            winning_nums = game_values[0]
+            player_nums = game_values[1]
+            for num in winning_nums:
+           #     results[num] = player_nums.count(num)
+                print()
+
+    print(type(all_games[0]))
 
 if __name__ == "__main__":
     main()
