@@ -38,7 +38,7 @@ def is_part_number(schematic, i, j):
     elif: j == 0:
         # 1 digit number - i.e starts and finishes within the first column
     elif: j == len(schematic.index(i):
-                   # The number finishes at the very last column of the line
+        # The number finishes at the very last column of the line
 
 def is_special_char(char):
     return char.isprintable() and not char.isalnum() and char not in string.whitespace
