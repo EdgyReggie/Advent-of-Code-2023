@@ -1,8 +1,15 @@
 def main():
-    game_numbers = []
     all_games = []
 
+    do_file_io(all_games)
+
+
+        
+    print(sum(calc_result(all_games)))
+
+def do_file_io(all_games):
     with open("input", "r") as f:
+        game_numbers = []
         for line in f: 
             game = line.split(":")
             game_numbers = [number.strip().split("|") for number in game[1:]]
@@ -16,6 +23,7 @@ def main():
                     working_list.append(nums)
                 all_games.append(working_list)
 
+def calc_result(all_games):
     results = []
 
     for game in all_games:
@@ -23,6 +31,7 @@ def main():
         player_nums = game[1]
         count = 0
         result = 0
+        
         for num in winning_nums:
             count += player_nums.count(num)
         
@@ -33,8 +42,8 @@ def main():
                 result *= 2
 
         results.append(result)
-        
-    print(sum(results))
+
+    return results
 
 if __name__ == "__main__":
     main()
