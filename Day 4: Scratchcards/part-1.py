@@ -1,11 +1,8 @@
 def main():
     all_games = []
-
     do_file_io(all_games)
-
-
-        
     print(sum(calc_result(all_games)))
+
 
 def do_file_io(all_games):
     with open("input", "r") as f:
@@ -22,6 +19,7 @@ def do_file_io(all_games):
                         nums.remove("")
                     working_list.append(nums)
                 all_games.append(working_list)
+
 
 def calc_result(all_games):
     results = []
@@ -44,6 +42,7 @@ def calc_result(all_games):
         results.append(result)
 
     return results
+
 
 if __name__ == "__main__":
     main()
