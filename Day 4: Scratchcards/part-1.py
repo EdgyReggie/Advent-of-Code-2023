@@ -2,7 +2,7 @@ def main():
     game_numbers = []
     all_games = []
 
-    with open("example-input", "r") as f:
+    with open("input", "r") as f:
         for line in f: 
             game = line.split(":")
             game_numbers = [number.strip().split("|") for number in game[1:]]
@@ -16,16 +16,25 @@ def main():
                     working_list.append(nums)
                 all_games.append(working_list)
 
-    print(all_games)
-
     results = []
 
     for game in all_games:
-        for game_values in game:
-            winning_nums = game_values[0]
-            player_nums = game_values[1]
-            #for num in winning_nums:
-            #    results[num] = player_nums.count(num)
+        winning_nums = game[0]
+        player_nums = game[1]
+        count = 0
+        result = 0
+        for num in winning_nums:
+            count += player_nums.count(num)
+        
+        for i in range(1, count + 1):
+            if result == 0: 
+                result = i
+            else:
+                result *= 2
+
+        results.append(result)
+        
+    print(sum(results))
 
 if __name__ == "__main__":
     main()
